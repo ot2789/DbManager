@@ -23,7 +23,7 @@ class sqlite:
         self.dbname = dbname
         if dbname==None:return
         try:
-            self.conn = db.connect(dbname)
+            self.conn = db.connect(dbname, check_same_thread=False)
             self.cur = self.conn.cursor()
             cur = self.cur
         except Exception as e:raise ValueError(f'{red}The Database "{dbname}" Not Exists, Error[1]{white+str(e)}')
@@ -171,7 +171,7 @@ class sqlite:
     def CreateDb(self,Dbname,data):
         self.dbname = Dbname
         try:
-            self.conn = db.connect(Dbname)
+            self.conn = db.connect(Dbname, check_same_thread=False)
             self.cur = self.conn.cursor()
             cur = self.cur
         except Exception as e:
